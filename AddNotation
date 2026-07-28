@@ -14,3 +14,4 @@ refactor/api-services
 
 main
 feature/home-page
+{rel="icon" type="image/svg+xml" href="/favicon.svg" }
