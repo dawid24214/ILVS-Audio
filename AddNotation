@@ -1,0 +1,16 @@
+main
+feature/home-page
+feature/product-catalog
+feature/product-card
+feature/navbar
+feature/shopping-cart
+feature/authentication
+feature/search
+feature/checkout
+bugfix/navbar-mobile
+hotfix/login-error
+refactor/api-services
+-----------------------------------------------
+
+main
+feature/home-page
