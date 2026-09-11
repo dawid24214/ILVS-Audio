@@ -1,0 +1,4 @@
+.admin-layout{min-height:100vh;display:grid;grid-template-columns:190px minmax(0,1fr)}
+.admin-layout__main{min-width:0}.admin-layout__content{padding:28px 32px}
+@media(max-width:960px){.admin-layout{grid-template-columns:72px minmax(0,1fr)}}
+@media(max-width:680px){.admin-layout{display:block}.admin-layout__content{padding:22px 16px 92px}}

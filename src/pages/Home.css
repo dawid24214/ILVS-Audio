@@ -29,3 +29,22 @@
 .testimonials cite { display: block; margin-top: 24px; color: var(--orange); font-style: normal; font-weight: 700; }
 @media (max-width: 980px) { .products-grid { grid-template-columns: repeat(2,1fr); } .benefits__grid { grid-template-columns: repeat(2,1fr); } .promo__inner { grid-template-columns: 1fr; padding-top: 60px; } .testimonials { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .products-grid, .benefits__grid { grid-template-columns: 1fr; } .hero__stats { gap: 22px; } .hero h1 { font-size: 2.55rem; } }
+
+
+.testimonials blockquote{
+  display:flex;
+  flex-direction:column;
+}
+.testimonials blockquote p{
+  flex:1;
+}
+.testimonial-rating{
+  display:flex;
+  gap:4px;
+  margin-bottom:16px;
+  color:var(--orange);
+}
+.testimonial-rating svg{
+  width:15px;
+  height:15px;
+}

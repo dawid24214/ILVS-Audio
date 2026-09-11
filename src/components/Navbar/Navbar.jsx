@@ -39,7 +39,7 @@ function Navbar() {
 
         <div className="header-actions">
           <button className="icon-button" onClick={() => setSearchOpen((value) => !value)} aria-label="Otwórz wyszukiwarkę"><Search /></button>
-          <button className="icon-button desktop-only" aria-label="Konto użytkownika"><User /></button>
+          <NavLink className="icon-button desktop-only" to="/konto" aria-label="Konto użytkownika"><User /></NavLink>
           <button className="icon-button cart-button" onClick={() => setIsCartOpen(true)} aria-label="Otwórz koszyk">
             <ShoppingCart /><span className="cart-button__badge">{itemCount}</span>
           </button>
@@ -52,6 +52,7 @@ function Navbar() {
       <div className={`mobile-nav ${mobileOpen ? 'mobile-nav--open' : ''}`}>
         <button className="icon-button mobile-nav__close" onClick={() => setMobileOpen(false)}><X /></button>
         {links.map(([to, label]) => <NavLink key={to} to={to} onClick={() => setMobileOpen(false)}>{label}</NavLink>)}
+        <NavLink to="/konto" onClick={() => setMobileOpen(false)}>Moje konto</NavLink>
       </div>
     </header>
   );

@@ -1,10 +1,31 @@
-import { Headphones, Lock, ShieldCheck, Truck } from 'lucide-react';
+import { Headphones, Lock, ShieldCheck, Star, Truck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 import ProductCard from '../components/ProductCard/ProductCard';
-import { products } from '../data/products';
+import { getStoreProducts } from '../data/storeProducts';
+import { getReviews } from '../admin/utils/reviewStorage';
 import './Home.css';
 
 function Home() {
+  const products = useMemo(() => getStoreProducts(), []);
+  const [reviews, setReviews] = useState(() => getReviews());
+
+  useEffect(() => {
+    const refreshReviews = () => setReviews(getReviews());
+
+    const handleStorage = (event) => {
+      if (event.key === 'ilvs_reviews') refreshReviews();
+    };
+
+    window.addEventListener('storage', handleStorage);
+    window.addEventListener('ilvs:reviews-updated', refreshReviews);
+
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      window.removeEventListener('ilvs:reviews-updated', refreshReviews);
+    };
+  }, []);
+
   return (
     <>
       <section className="hero">
@@ -25,7 +46,39 @@ function Home() {
 
       <section className="promo"><div className="container promo__inner"><div><span className="eyebrow eyebrow--light">LIMITOWANA OFERTA</span><h2>CZAS NA NOWY POZIOM <strong>BRZMIENIA!</strong></h2><p>Rabaty do 40% na wybrane produkty.</p><Link className="button button--dark" to="/kategorie">Sprawdź promocje</Link></div><div className="promo__image" /></div></section>
 
-      <section id="opinie" className="section container"><header className="section-heading"><span className="eyebrow">OPINIE</span><h2>Co mówią <span>klienci</span></h2></header><div className="testimonials"><blockquote>“Świetna obsługa, szybka dostawa i bardzo dobre doradztwo przed zakupem.”<cite>Marcin — DJ / producent</cite></blockquote><blockquote>“Sklep wygląda profesjonalnie, a koszyk i filtrowanie są bardzo wygodne.”<cite>Anna — realizatorka dźwięku</cite></blockquote><blockquote>“Sprzęt dotarł następnego dnia. Na pewno wrócę po kolejne zakupy.”<cite>Piotr — pasjonat audio</cite></blockquote></div></section>
+      <section id="opinie" className="section container">
+        <header className="section-heading">
+          <span className="eyebrow">OPINIE</span>
+          <h2>Co mówią <span>klienci</span></h2>
+        </header>
+
+        {reviews.length > 0 ? (
+          <div className="testimonials">
+            {reviews.map((review) => (
+              <blockquote key={review.id}>
+                <div className="testimonial-rating" aria-label={`Ocena ${review.rating} na 5`}>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star
+                      key={index}
+                      fill={index < review.rating ? 'currentColor' : 'none'}
+                    />
+                  ))}
+                </div>
+                <p>“{review.content}”</p>
+                <cite>
+                  {review.customerName}
+                  {review.customerRole ? ` — ${review.customerRole}` : ''}
+                </cite>
+              </blockquote>
+            ))}
+          </div>
+        ) : (
+          <div className="store-empty-state">
+            <strong>Brak opublikowanych opinii</strong>
+            <p>Opinie klientów są publikowane przez administratora sklepu.</p>
+          </div>
+        )}
+      </section>
     </>
   );
 }
