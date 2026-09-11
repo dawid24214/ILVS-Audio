@@ -1,0 +1,14 @@
+:root {
+  --black: #050505;
+  --dark: #0a0a0a;
+  --surface: #171717;
+  --surface-2: #252525;
+  --border: #303030;
+  --orange: #ff6a00;
+  --orange-light: #ff8533;
+  --orange-dark: #cc5500;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}

@@ -1,0 +1,23 @@
+.cart-overlay { position: fixed; inset: 0; z-index: 99; border: 0; background: rgba(0,0,0,.68); opacity: 0; pointer-events: none; transition: .3s; }
+.cart-overlay--open { opacity: 1; pointer-events: auto; }
+.cart-drawer { position: fixed; z-index: 100; inset: 0 0 0 auto; width: min(430px,100%); background: var(--dark); border-left: 1px solid var(--border); transform: translateX(100%); transition: transform .3s ease; display: grid; grid-template-rows: auto 1fr auto; }
+.cart-drawer--open { transform: translateX(0); }
+.cart-drawer__header, .cart-drawer__footer { padding: 20px; border-bottom: 1px solid var(--border); }
+.cart-drawer__header { display: flex; align-items: center; justify-content: space-between; }
+.cart-drawer__header div { display: flex; align-items: center; gap: 10px; }
+.cart-drawer__header svg { color: var(--orange); }
+.cart-drawer__body { overflow: auto; padding: 18px; }
+.empty-cart { min-height: 70vh; display: grid; place-content: center; justify-items: center; text-align: center; color: var(--muted); gap: 10px; }
+.empty-cart > svg { width: 54px; height: 54px; color: var(--orange); opacity: .7; }
+.cart-item { display: grid; grid-template-columns: 58px 1fr auto auto; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--border); padding: 12px; border-radius: 14px; margin-bottom: 12px; }
+.cart-item img { width: 58px; height: 58px; object-fit: cover; border-radius: 9px; }
+.cart-item__info { min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+.cart-item__info strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .88rem; }
+.cart-item__info span { color: var(--orange); font-weight: 800; font-size: .84rem; }
+.quantity { display: flex; align-items: center; gap: 7px; }
+.quantity button, .remove-button { width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 7px; background: var(--surface-2); color: var(--muted); cursor: pointer; }
+.quantity svg, .remove-button svg { width: 14px; }
+.remove-button:hover { color: #ef4444; }
+.cart-drawer__footer { border-top: 1px solid var(--border); border-bottom: 0; }
+.cart-drawer__footer > div { display: flex; justify-content: space-between; margin-bottom: 16px; }
+.cart-drawer__footer strong { color: var(--orange); font: 800 1.2rem var(--font-display); }
